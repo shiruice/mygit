@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>test jquery</title>
+</head>
+<body>
+
+<!-- 引入头部组件 -->
+<%= require('common')('header/header',true) %>
+<div class="wrap">
+
+    <div class="main">
+        <div class="main-left">
+            <%= require('common')('menu/menu',true)%>
+        </div>
+        <div class="main-right">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="identity">
+                        <p></p>
+                        <span>lxw123</span>
+                    </div>
+                    <ul class="info line">
+                        <li>绑定地址： 3 <a href="/">查看</a></li>
+                        <li>收藏商品： 3 <a href="/">查看</a></li>
+                    </ul>
+                    <ul class="info">
+                        <li>月预算：无</li>
+                        <li>已消费：<strong>￥2332元</strong></li>
+                    </ul>
+                    <ul class="info">
+                        <li>季预算：无</li>
+                        <li>已消费：<strong>￥2332元</strong></li>
+                    </ul>
+                    <ul class="info">
+                        <li>年预算：无</li>
+                        <li>已消费：<strong>￥2332元</strong></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">订单预览<a href="/">查看全部订单</a></h3>
+                </div>
+                <div class="panel-body">
+                    <ul class="list">
+                        <li><a href="/">有关领先未来后台详解,业务数据分析会议阿克苏</a><span>[11-21]</span></li>
+                        <li><a href="/">有关领先未来后台详解,业务数据分析会议阿克苏</a><span>[11-21]</span></li>
+                        <li><a href="/">有关领先未来后台详解,业务数据分析会议阿克苏</a><span>[11-21]</span></li>
+                        <li><a href="/">有关领先未来后台详解,业务数据分析会议阿克苏</a><span>[11-21]</span></li>
+                        <li><a href="/">有关领先未来后台详解,业务数据分析会议阿克苏</a><span>[11-21]</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">推送消息<a href="/">更多</a></h3>
+                </div>
+                <div class="panel-body">
+                    <ul class="list">
+                        <li><a href="/">有关领先未来后台详解,业务数据分析会议阿克苏</a><span>[11-21]</span></li>
+                        <li><a href="/">有关领先未来后台详解,业务数据分析会议阿克苏</a><span>[11-21]</span></li>
+                        <li><a href="/">有关领先未来后台详解,业务数据分析会议阿克苏</a><span>[11-21]</span></li>
+                        <li><a href="/">有关领先未来后台详解,业务数据分析会议阿克苏</a><span>[11-21]</span></li>
+                        <li><a href="/">有关领先未来后台详解,业务数据分析会议阿克苏</a><span>[11-21]</span></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- <button class="btn btn-primary btn-lg link" data-toggle="modal" data-target="#myModal">开始演示模态框</button> -->
+        </div>
+    </div>
+</div>
+
+
+<!--<a class="forward-a" href="/pageA.html">-->
+<!--  跳转到A页面-->
+<!--</a>-->
+<!--<a class="forward-b" href="/pageB.html">-->
+<!--  跳转到B页面-->
+<!--</a>-->
+
+<!-- 引入尾部组件 -->
+<%= require('common')('footer/footer',true) %>
+<div class="small-webpack"></div>
+<div class="webpack"></div>
+</body>
+</html>

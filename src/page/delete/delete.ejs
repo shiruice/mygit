@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
+    </script>
+    <title>艹</title>
+    <style>
+        .image {
+            width: 200px;
+            height: 100px;
+            display: flex;
+            align-items: center
+        }
+
+        #tab tr {
+            width: 90%;
+            margin: 10px 0;
+
+        }
+
+        #tab,
+        tr,
+        td {
+            border: none;
+        }
+
+        td {
+
+            margin: 0 auto;
+            width: 250px;
+
+        }
+
+        .hide {
+            display: none;
+
+        }
+
+        .domekea {
+            display: none;
+        }
+
+        .modal {
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            width: 500px;
+            height: 400px;
+            margin-left: -200px;
+            margin-top: -250px;
+            z-index: 10;
+            background-color: white;
+        }
+
+        .cccc {
+            display: flex;
+            margin: 0 auto;
+            text-align: center
+        }
+
+        .cccc button {
+            text-align: center
+        }
+
+        .shade {
+            position: fixed;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            /* opacity: 0.6;
+            background-color: black; */
+            background: rgba(0, 0, 0, 0.6);
+            /* ie背景透明 */
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#88000000, endColorstr=#88000000);
+            z-index: 9;
+        }
+
+        #guanbi {
+            float: right;
+            margin: 10px 10px 0 0;
+        }
+
+        button {
+            border: none;
+            background: #fff;
+            font-size: 16px;
+            /* 鼠标经过变手指 */
+            cursor: pointer;
+        }
+
+        .modal p {
+            text-align: center;
+
+            margin-top: 20px;
+        }
+    </style>
+    <script>
+        $(function () {
+            list()
+            // console.log(data)
+            sssssss()
+            $("#but").click(function () {
+                list()
+            })
+            $('input[value="添加"]').click(function () {
+                $('.hide').removeClass('hide');
+            });
+            $('#ddddd').click(function () {
+                alert('qqqqqqqqqqqqqqq')
+            })
+            $('input[value="取消"]').click(function () {
+                $('input[type="text"]').val('');
+                $('.modal,.shade').addClass('hide');
+                $("#tabListChild").remove();
+
+            });
+            $('#guanbi').on('click', function () {
+                $('.modal,.shade').addClass('hide');
+                $("#tabListChild").remove();
+            })
+            $('table').on('click', '.del', function () {
+                console.log($(this).parent().parent().text());
+                $(this).parent().parent().parent().remove();//删除当前行
+
+            })
+            $('table').on('click', '.detalis', function () {
+                // console.log($(this).parent().parent().text()[0]);
+                var ddddd = $(this).parent().parent().parent().children()
+                console.log(ddddd)
+                $('.hide').removeClass('hide');
+                $($('.modal input')[0]).val($(ddddd[1]).text());
+                $($('.modal input')[1]).val($(ddddd[2]).text());
+                $($('.modal span')[0]).text($(ddddd[1]).text());
+                $($('.modal span')[1]).text($(ddddd[2]).text());
+                console.log($($('.modal tr td')[0]).text())
+                console.log($($('#tab tr td')[0]).text(), 111111);
+                $("#tabList").append("<tr id='tabListChild' align='center'>"
+                    + "<td><p>" + $(ddddd[1]).text() + "</p></image></td>"
+                    + "<td><p>" + $(ddddd[2]).text() + "</p></td>"
+                    + "<td><p>" + $(ddddd[4]).text() + "</p></td>"
+                    + "<td>"
+                    + "<div  class='cccc'>"
+                    + "<button class='del' >删除</button>"
+                    + "<button><a href=' c1.html ' target='view_window'>详情</a></button>"
+                    + "<button class='detalis'>修改</button>"
+                    // + "<button><a onclick=\'bttons(" + _len + ")\'>详情</a><button><div>"
+                    + "</td>"
+                    + "</tr>");
+            })
+            $('.gitdetalis').on('click', function () {
+                console.log($(this))
+            })
+        })
+        //删除
+        var datass;
+        var intt = 0
+        var list = function (data) {
+            jQuery.support.cors = true
+            $.ajax({
+                url: 'https://www.apiopen.top/journalismApi',
+                async: false,//false?同步:异步
+                type: 'post',
+                data: { code: 200 },
+                success: function (data, code, msg) {
+                    dateList = data;
+                    datass = data
+
+                    // alert(msg)
+                    console.log(msg.responseJSON.msg)
+                    // console.log(dateList.data.auto[0].digest);
+                    data = dateList.data.auto
+                    // console.log(data);
+                    if (!data) {
+                        $('#domekea').removeClass('domekea');
+                        $("#tab").append("<tr id=" + _len + " align='center'>"
+                            + "<td colspan='5' style=\"text-align: center\" >暂无数据</td>"
+                            + "</tr>");
+                        // <td colspan="5" style="text-align: center">暂无数据</td>
+                    } else {
+                        $('#domekea').addClass('domekea');
+                        var k = 0;
+                        for (var i = 0; i < dateList.data.auto.length; i++) {
+                            var _len = i + intt;
+                            _len = _len.toString() + intt
+                            var list = data[k]
+                            var _list = list
+                            $("#tab").append("<tr id=" + _len + " align='center'>"
+                                + "<td><image src='" + list.picInfo[0].url + "' class='image'></image></td>"
+                                + "<td><p>" + list.title + "</p></td>"
+                                + "<td><p>" + list.digest + "</p></td>"
+                                + "<td><p>" + list.docid + "</p></td>"
+                                + "<td>"
+                                + "<div  class='cccc'>"
+                                + "<button class='del' >删除</button>"
+                                + "<button onclick='window.location.href=\'c5.html?id=" + list.tcount + "\''>详情</button>"
+                                + "<button class='detalis'>修改</button>"
+                                + "<button onclick=\'detali(" + _len + ")\'>详情</button>"
+                                + "<button onclick=\'detali(" + JSON.stringify(list) + ")\'>安安</button><div>"
+                                + "</td>"
+                                + "</tr>");
+                            k++;
+                            console.log(list)
+                        }
+                    }
+                    // return datass
+                },
+                error: function (error) {
+                    console.log(error)
+                },
+            });
+            intt++;
+        }
+        var deltr = function (index) {
+            var _len = $("#tab tr").length;
+            $("tr[id='" + index + "']").remove();//删除当前行
+        }
+        var detali = function (cal) {
+            console.log(cal.link)
+            url = './c5.html' + '?id=' + cal.docid
+            // window.open(url, '_blank')
+            window.location.href = url
+        }
+        var bttons = function (index) {
+            $('.hide').removeClass('hide');
+            console.log($($("tr[id='" + index + "'] td")[2]).text())
+            $($('.modal input')[0]).val($($("tr[id='" + index + "'] td")[1]).text());
+            $($('.modal input')[1]).val($($("tr[id='" + index + "'] td")[2]).text());
+            $($('.modal span')[0]).text($($("tr[id='" + index + "'] td")[1]).text());
+            $($('.modal span')[1]).text($($("tr[id='" + index + "'] td")[2]).text());
+            console.log($("tr[id='" + index + "'] td"))
+            console.log($($('#tab tr td')[0]).text(), 111111)
+        }
+
+        var sssssss = function () {
+            console.log(datass)
+        }
+    </script>
+</head>
+
+<body>
+<div class="modal hide">
+    <button id="guanbi">X</button>
+    <p>title<input type="text"></p>
+    <p>digest<input type="text"></p>
+    <p>digest<span></span></p>
+    <p>digest<span></span></p>
+    <table id="tabList">
+        <tr style="text-align: center">
+            <td>图示</td>
+            <td>标题</td>
+            <td>描述</td>
+            <td>操作</td>
+        </tr>
+    </table>
+    <p><input type="button" value="取消"></p>
+</div>
+<div class="shade hide"></div>
+<%= require('common')('header/header',true) %>
+<div class="wrap">
+    <div class="main-left">
+        <%= require('common')('menu/menu',true)%>
+    </div>
+    <div class="main-right">
+        <table id="tab" border="1" align="center" style="margin:0 auto">
+            <tr style="text-align: center">
+                <td>图示</td>
+                <td>标题</td>
+                <td>描述</td>
+                <td>操作</td>
+            </tr>
+
+        </table>
+        <div>
+            <input type="button" id="but" value="增加" />
+            <input type='button' id='btn' value="添加" />
+            <a href="c1.html?id=12">哎哎哎哎哎锕</a>
+        </div>
+        <button id="ddddd">按钮</button>
+    </div>
+</div>
+</body>
+
+</html>
