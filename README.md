@@ -22,7 +22,6 @@ online demo https://jeromehan.github.io/webpack-jquery/dist/
 
 ## 拷贝项目模板 ##
 
-    $ git clone https://github.com/jeromehan/webpack-jquery.git
 
 ## 安装依赖 ##
 
