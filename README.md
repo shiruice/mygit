@@ -24,8 +24,6 @@ online demo https://jeromehan.github.io/webpack-jquery/dist/
 
 
 ## 安装依赖 ##
-
-  $ cd webpack-jquery
 	$ npm install
 
 ## 目录结构 ##
